@@ -1,47 +1,53 @@
-# 📈 Trading Bot: Backtesting de Estrategias para Small Caps
+# 📈 Small Cap Trading Bot
 
-**Autor:** Henry Paolo Alfaro Sotil  
-**Perfil:** Estudiante de Física (UNMSM) | Analista de Datos Cuantitativos  
-**Contacto:** [henry.alfaro1@unmsm.edu.pe](mailto:henry.alfaro1@unmsm.edu.pe)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE) [![Python](https://img.shields.io/badge/Python-3.11-blue.svg)](https://python.org) [![Made with Jupyter](https://img.shields.io/badge/Made%20with-Jupyter-orange.svg)](https://jupyter.org)
+
+**Quantitative backtesting system for small-cap stocks with ATR-based risk management and position sizing**
 
 ---
 
-## 📝 Descripción del Proyecto
-Este repositorio contiene un sistema de **análisis cuantitativo y backtesting** desarrollado en Python para evaluar estrategias sistemáticas en acciones de baja capitalización (*Small Caps*) del mercado estadounidense. 
+## 📝 Overview
 
-El proyecto aplica principios de modelado matemático y física computacional para simular operaciones de mercado, gestionando el riesgo mediante indicadores de volatilidad técnica.
+A systematic backtesting engine for long-only small-cap equity strategies. Uses ATR-based dynamic stop-loss and take-profit levels with fixed fractional position sizing (1% risk per trade). The bot processes historical OHLC data via `yfinance`, simulates trade execution, and produces performance dashboards with key metrics.
 
-## 🛠️ Tecnologías Utilizadas
-* **Lenguaje:** Python
-* **Librerías de Datos:** Pandas, NumPy
-* **Visualización:** Matplotlib (GridSpec para dashboards analíticos)
-* **Finanzas:** yfinance (Extracción de datos de mercado en tiempo real)
+## 🔑 Key Features
 
-## 📊 Lógica de la Estrategia
-El bot opera bajo una metodología **Long-Only** con los siguientes parámetros técnicos:
+- **Dynamic ATR-based Stop Loss (1.9× ATR) and Take Profit (3.2× ATR)**
+- **Fixed fractional position sizing (1% capital risk per trade)**
+- **Small-cap universe filter ($1–$20 stocks)**
+- **In-Sample / Out-of-Sample split to avoid overfitting**
+- **Performance dashboards: expectancy, max drawdown, profit factor, win rate**
+- **Trade-by-trade analysis with entry/exit tracking**
 
-| Parámetro | Configuración |
-|-----------|---------------|
-| **Universo** | Acciones entre $1.00 y $20.00 USD |
-| **Gestión de Riesgo** | 1% del capital por operación |
-| **Stop Loss (SL)** | 1.9 × ATR (Volatilidad dinámica) |
-| **Take Profit (TP)** | 3.2 × ATR |
-| **Ratio R:R** | 1:1.68 |
 
-### Condiciones de Entrada
-1. **Filtro de Tendencia:** Precio de apertura superior a la Media Móvil Simple (SMA 10).
-2. **Momentum:** Desaceleración del Rate of Change (ROC) para identificar puntos de giro.
-3. **Estructura:** Confirmación mediante ruptura de niveles de precios previos.
+## 🚀 Quick Start
 
-## 📈 Resultados y KPIs
-El notebook genera un reporte estadístico detallado que incluye:
-* **Profit Factor:** Relación entre ganancias y pérdidas brutas.
-* **Win Rate:** Porcentaje de operaciones exitosas.
-* **Max Drawdown:** Máxima pérdida consecutiva desde el pico de capital.
-* **Sharpe Ratio:** Retorno ajustado al riesgo.
+```bash
+# Clone
+git clone https://github.com/elbrujo325/small-cap-trading-bot.git
+cd small-cap-trading-bot
 
-## 🚀 Cómo Ejecutarlo
-1. Clona este repositorio.
-2. Asegúrate de tener instalado Python y las dependencias:
-   ```bash
-   pip install pandas numpy matplotlib yfinance
+# Install dependencies
+pip install pandas numpy matplotlib yfinance
+
+# Run the notebook
+jupyter notebook small_cap_trading_bot.ipynb
+```
+
+The notebook walks through the entire pipeline: data download → signal generation → backtesting → performance analysis.
+
+## 🛠️ Tech Stack
+
+Python · Pandas · NumPy · Matplotlib (GridSpec) · yfinance
+
+## 📄 License
+
+This project is licensed under the MIT License — see [LICENSE](./LICENSE) for details.
+
+---
+
+<div align="center">
+
+*By [Henry Paolo Alfaro Sotil](https://github.com/elbrujo325) — Physicist & Data Scientist*
+
+</div>
